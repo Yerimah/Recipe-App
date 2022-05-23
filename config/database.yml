@@ -17,13 +17,15 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: recipe_user
+  password: recipe_password
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: Recipe_App_development
+  database: recipe_database
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +59,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: Recipe_App_test
+  database: recipe_database
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,6 +83,6 @@ test:
 #
 production:
   <<: *default
-  database: Recipe_App_production
-  username: Recipe_App
+  database: recipe_database
+  username: recipe_user
   password: <%= ENV["RECIPE_APP_DATABASE_PASSWORD"] %>
