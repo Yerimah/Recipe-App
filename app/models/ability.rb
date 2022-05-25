@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Ability
   include CanCan::Ability
 
@@ -24,26 +22,23 @@ class Ability
     #   user.id
     # end
 
-
-
     # can :manage, Recipe, user_id: user.id
     # can :manage, Food, user_id: user.id
     # can :read, :all
 
-      #   can :read, :all
-      #   can :manage, Food, user_id: user.id
-        # can :create, Recipe do |_recipe|
-        #   user.id
-        # end
+    #   can :read, :all
+    #   can :manage, Food, user_id: user.id
+    # can :create, Recipe do |_recipe|
+    #   user.id
+    # end
 
-        # can :destroy, Recipe do |recipe|
-        #   recipe.user_id == user.id
-        # end
+    # can :destroy, Recipe do |recipe|
+    #   recipe.user_id == user.id
+    # end
 
-        # can :create, Food do |_food|
-        #   user.id
-        # end
-
+    # can :create, Food do |_food|
+    #   user.id
+    # end
 
     # Define abilities for the passed in user here. For example:
     #
