@@ -1,9 +1,12 @@
-<h1>New food</h1>
-
-<%= render "form", food: @food %>
-
-<br>
-
 <div>
-  <%= link_to "Back to foods", foods_path %>
+    <h1>Add New Food ooooooo</h1>
+
+    <%= form_with model: @food, url: foods_path do |f| %>
+      <%= f.hidden_field :user_id, value: current_user.id%>
+      <%= f.text_field :name, placeholder: 'Name of Food' %>
+      <%= f.text_field :unit, placeholder: 'Measurement Unit' %>
+      <%= f.text_field :price, placeholder: 'Price($$)' %>
+
+      <%= f.submit "Add Food" %>
+    <% end %>
 </div>

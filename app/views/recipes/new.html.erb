@@ -1,9 +1,17 @@
 <h1>New recipe</h1>
 
-<%= render "form", recipe: @recipe %>
-
-<br>
-
 <div>
-  <%= link_to "Back to recipes", recipes_path %>
+  <h1>Create a new recipe</h1>
+  <%= form_with model: @recipe, url: "/recipes" do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.text_field :name, placeholder: 'Name of Recipe' %>
+    <%= f.text_field :preparation_time, placeholder: 'Preparation Time' %>
+    <%= f.text_field :cooking_time, placeholder: 'Cooking Time' %>
+    <%= f.text_area :description, placeholder: 'Description' %>
+    <div>
+      <%= f.label :public, "Public" %>
+      <%= f.check_box :public %>
+    </div>
+    <%= f.submit "Create recipe" %>
+  <% end %>
 </div>
