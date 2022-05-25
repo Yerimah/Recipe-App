@@ -1,6 +1,6 @@
 <div>
     <h1>Public Recipes</h1>
-    <ul class="flex flex-col gap-4">
+    <ul>
         <% @recipes.each do |recipe| %>
         <li>
           <%= link_to recipe_path(recipe.id) do %>
