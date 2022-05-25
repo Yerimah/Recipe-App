@@ -13,7 +13,9 @@
           <%= link_to "Recipe Details", recipe_path(recipe.id) %>
         </div>
         <div>
-          <%= button_to "Remove", recipe_path(recipe.id), method: :delete %>
+          <% if can? :destroy, recipe %>
+            <%= button_to "Remove", recipe_path(recipe.id), method: :delete %>
+          <% end %>
         </div>
       </div>
     <% end %>
