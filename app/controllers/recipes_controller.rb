@@ -33,13 +33,13 @@ class RecipesController < ApplicationController
   # PATCH/PUT /recipes/1 or /recipes/1.json
   def update
     @recipe.update(public: !@recipe.public)
-    redirect_to recipe_path(@recipe.id), notice: "Recipe status updated!"
+    redirect_to recipe_path(@recipe.id), notice: 'Recipe status updated!'
   end
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
     @recipe.destroy!
-    redirect_to recipes_path, notice: "Recipe has been deleted successfully!"
+    redirect_to recipes_path, notice: 'Recipe has been deleted successfully!'
   end
 
   private

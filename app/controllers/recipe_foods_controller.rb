@@ -24,10 +24,10 @@ class RecipeFoodsController < ApplicationController
     respond_to do |format|
       if @recipe_food.save
         format.html { redirect_to recipe_food_url(@recipe_food), notice: 'Recipe food was successfully created.' }
-        
+
       else
         format.html { render :new, status: :unprocessable_entity }
-        
+
       end
     end
   end
