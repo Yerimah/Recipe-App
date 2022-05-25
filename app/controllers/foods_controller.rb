@@ -21,14 +21,10 @@ class FoodsController < ApplicationController
   def create
     @food = Food.new(food_params)
 
-    respond_to do |format|
-      if @food.save
-        format.html { redirect_to food_url(@food), notice: 'Food was successfully created.' }
-        
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        
-      end
+    if @food.save
+      redirect_to foods_path, notice: 'Your food has been added successfully!'
+    else
+      redirect_to new_food_path, notice: 'An error has occurred. Please try again.'
     end
   end
 
@@ -37,22 +33,19 @@ class FoodsController < ApplicationController
     respond_to do |format|
       if @food.update(food_params)
         format.html { redirect_to food_url(@food), notice: 'Food was successfully updated.' }
-        
+
       else
         format.html { render :edit, status: :unprocessable_entity }
-        
+
       end
     end
   end
 
   # DELETE /foods/1 or /foods/1.json
   def destroy
-    @food.destroy
-
-    respond_to do |format|
-      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    food = Food.find(params[:id])
+    food.destroy
+    redirect_to foods_path, notice: "Your food was deleted successfully!"
   end
 
   private
@@ -64,6 +57,6 @@ class FoodsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def food_params
-    params.require(:food).permit(:name)
+    params.require(:food).permit(:name, :user_id, :unit, :price)
   end
 end

@@ -3,11 +3,13 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(user: current_user)
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show; end
+  def show
+    @recipe = Recipe.find(params[:id])
+  end
 
   # GET /recipes/new
   def new
@@ -21,38 +23,23 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
 
-    respond_to do |format|
-      if @recipe.save
-        format.html { redirect_to recipe_url(@recipe), flash [:notice] = 'Recipe was successfully created.' }
-        
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        
-      end
+    if @recipe.save
+      redirect_to recipes_path(@recipe), notice: 'Your new recipe has been created successfully!'
+    else
+      redirect_to new_recipe_path, notice: 'An error occured. Please try again.'
     end
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
   def update
-    respond_to do |format|
-      if @recipe.update(recipe_params)
-        format.html { redirect_to recipe_url(@recipe), flash [:notice] = 'Recipe was successfully updated.' }
-
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-       
-      end
-    end
+    @recipe.update(public: !@recipe.public)
+    redirect_to recipe_path(@recipe.id), notice: "Recipe status updated!"
   end
 
   # DELETE /recipes/1 or /recipes/1.json
   def destroy
-    @recipe.destroy
-
-    respond_to do |format|
-      format.html { redirect_to recipes_url, flash [:notice] = 'Recipe was successfully destroyed.' }
-    
-    end
+    @recipe.destroy!
+    redirect_to recipes_path, notice: "Recipe has been deleted successfully!"
   end
 
   private
@@ -64,6 +51,6 @@ class RecipesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def recipe_params
-    params.require(:recipe).permit(:name)
+    params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :description, :public, :user_id)
   end
 end

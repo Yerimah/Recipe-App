@@ -1,14 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Foods</h1>
+<div>
+  <% if @foods.length !=0 %>
+    <h1>My Foods</h1>
+    <div>
+      <% if current_user %>
+        <%= link_to "Add New Food", new_food_path %>
+      <% end %>
+    </div>
 
-<div id="foods">
-  <% @foods.each do |food| %>
-    <%= render food %>
-    <p>
-      <%= link_to "Show this food", food %>
-    </p>
+    <div>
+      <% @foods.each do |food| %>
+
+        <h4>Name: <%= food.name %></h4>
+        <p>Unit: <%= food.unit %></p>
+        <p>Price: <%= food.price %></p>
+
+        <%= button_to "Remove", food_path(food.id), method: :delete  %>
+      <% end %>
+    </div>
+
+  <% else %>
+
+    <h3>There are no foods!</h3>
+    <div>
+      <%= link_to "Add new food", new_food_path %>
+    </div>
+
   <% end %>
 </div>
-
-<%= link_to "New food", new_food_path %>
