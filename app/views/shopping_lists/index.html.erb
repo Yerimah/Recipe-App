@@ -1,0 +1,16 @@
+<h1><%= current_user.name %>'s Shopping List</h1>
+
+<p>Total Number of food items to buy: <%= @recipe_foods.length %></p>
+
+<p>
+  Total value of food items needed:
+  $<%= @recipe_foods.map {|ingredient| ingredient.food.price.to_i * ingredient.quantity.to_i }.sum %>
+</p>
+
+<div>
+  <% @recipe_foods.each do |ingredient|%>
+    <p><%= ingredient.food.name %></p>
+    <p><%= ingredient.quantity %> <%= ingredient.food.unit %></p>
+    <p>$<%= ingredient.food.price %></p>
+  <% end %>
+</div>

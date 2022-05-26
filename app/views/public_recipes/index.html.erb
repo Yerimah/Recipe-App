@@ -1,15 +1,15 @@
 <div>
-    <h1>Public Recipes</h1>
-    <ul>
-        <% @recipes.each do |recipe| %>
-        <li>
-          <%= link_to recipe_path(recipe.id) do %>
-            <h3><%= recipe.name %></h3>
-            <h3>Total food items: </h3>
-            <h3>by <%= recipe.user.name %></h3>
-            <h3>Total price: <%= recipe.recipe_foods.includes(:food).map {|r| r.food.price.to_i * r.quantity.to_i }.sum %></h3>
-          <% end %>
-        </li>
+  <h1>Public Recipes</h1>
+  <ul>
+      <% @recipes.each do |recipe| %>
+      <li>
+        <%= link_to recipe_path(recipe.id) do %>
+          <h3><%= recipe.name %></h3>
+          <h3>Total food items: </h3>
+          <h3>by <%= recipe.user.name %></h3>
+          <h3>Total price: <%= recipe.recipe_foods.includes(:food).map {|r| r.food.price.to_i * r.quantity.to_i }.sum %></h3>
         <% end %>
-    </ul>
+      </li>
+      <% end %>
+  </ul>
 </div>
