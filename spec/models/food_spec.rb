@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Food, type: :model do
   describe 'Validations for the Food model' do
     before(:each) do
-      @food = Food.create( user_id: 1, name: 'chicken', unit: 'kg', price: 10)
+      @food = Food.create(user_id: 1, name: 'chicken', unit: 'kg', price: 10)
     end
 
     it 'check if name is present' do
