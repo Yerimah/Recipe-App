@@ -78,3 +78,5 @@ end
 gem 'rubocop', '>= 1.0', '< 2.0'
 
 gem 'devise'
+
+gem 'ffi', '~> 1.15', '>= 1.15.5'
