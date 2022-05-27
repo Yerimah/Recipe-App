@@ -8,4 +8,3 @@ RSpec.describe 'PublicRecipes', type: :request do
     end
   end
 end
-
