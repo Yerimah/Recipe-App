@@ -30,13 +30,13 @@ class FoodsController < ApplicationController
 
   # PATCH/PUT /foods/1 or /foods/1.json
   def update
-      if @food.update(food_params)
+    if @food.update(food_params)
       redirect_to food_url(@food), notice: 'Food was successfully updated.'
 
-      else
-         render :edit, status: :unprocessable_entity
+    else
+      render :edit, status: :unprocessable_entity
 
-      end
+    end
   end
 
   # DELETE /foods/1 or /foods/1.json
