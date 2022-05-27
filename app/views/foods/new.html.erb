@@ -3,7 +3,7 @@
     <div class="row g-0">
       <div class="col-md-12 background shadow">
         <div class="card-body transbox">
-     
+
             <h4 class="card-title my-5 text-center">Add New Food</h4>
 
           <%= form_with model: @food, url: foods_path do |f| %>
@@ -16,8 +16,8 @@
             </div>
 
             <div class="form-floating mb-4">
-            <%= f.select :measurement_unit, [['grams', 'g'], ['kilograms', 'kg'], ['milligrams', 'ml'], ['liter', 'l'], ['ounces', 'oz'], ['pound', 'lb'], ['cup', 'cup'], ['pint', 'pint'], ['quart', 'quart'], ['gallon', 'gallon']], {:include_blank => "-", :required => true}, {:class => 'form-control'} %>
-            <%= f.label :measurement_unit, "measurement unit *" %>
+            <%= f.select :unit, [['grams', 'g'], ['kilograms', 'kg'], ['milligrams', 'ml'], ['liter', 'l'], ['ounces', 'oz'], ['pound', 'lb'], ['cup', 'cup'], ['pint', 'pint'], ['quart', 'quart'], ['gallon', 'gallon']], {:include_blank => "-", :required => true}, {:class => 'form-control'} %>
+            <%= f.label :unit, "measurement unit *" %>
             <div>
 
             <div class="form-floating mb-3">
