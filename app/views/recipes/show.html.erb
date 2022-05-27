@@ -1,0 +1,32 @@
+<p style="color: green"><%= notice %></p>
+
+<h2>Name: <%= @recipe.name %></h3>
+<p>Preparation Time: <%= @recipe.preparation_time %></p>
+<p>Cooking Time: <%= @recipe.cooking_time %></p>
+<p>Description: <%= @recipe.description %></p>
+
+<div>
+  <%= link_to "Generate Shopping List", shopping_lists_path %>
+  <%= link_to "Add Ingredient", new_recipe_recipe_food_path(@recipe.id) %>
+</div>
+
+<div>
+<% @ingredients.each do |ingredient| %>
+  
+  <p>Name: <%= ingredient.food.name %></p>
+  <p>Quantity: <%= ingredient.quantity %></p>
+  <p>Price: <%= ingredient.food.price %></p>
+  <p>Amount: <%= ingredient.food.price.to_i * ingredient.quantity.to_i %></p>
+
+  <%= link_to "Modify", edit_recipe_recipe_food_path(recipe_id: @recipe.id, id: ingredient.id) %>
+  <%= button_to "Remove", recipe_recipe_food_path(recipe_id: @recipe.id, id: ingredient.id), method: :delete %>
+
+  <hr>
+<% end %>
+</div>
+
+
+
+
+
+
