@@ -1,15 +1,16 @@
-<div>
-  <h1>Public Recipes</h1>
-  <ul>
-      <% @recipes.each do |recipe| %>
-      <li>
-        <%= link_to recipe_path(recipe.id) do %>
-          <h3><%= recipe.name %></h3>
-          <h3>Total food items: </h3>
-          <h3>by <%= recipe.user.name %></h3>
-          <h3>Total price: <%= recipe.recipe_foods.includes(:food).map {|r| r.food.price.to_i * r.quantity.to_i }.sum %></h3>
-        <% end %>
-      </li>
+<div class="row">
+<h1 class="text-center">Public Recipes</h1>
+<% @recipes.each do |recipe|%>
+<div class="col-md-3">
+<div class="shadow-lg m-3 bg-white public-card">
+    <div class="card-body">
+      <%= link_to recipe_path(recipe.id) do %>
+        <h5 class="card-title py-3"><%= recipe.name %></h3>
+        <p class="card-text"><%= truncate(recipe.description, length: 90, omission: '...') %></p>
+        <h3 class="btn", style= "background-color: var(--primary-color); color: var(--white)">View Recipe</h3>
       <% end %>
-  </ul>
+    </div>
+</div>
+</div>
+<% end %>
 </div>

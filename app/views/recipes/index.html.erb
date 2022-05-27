@@ -1,21 +1,29 @@
-<p style="color: green"><%= notice %></p>
+<div class="">
+<div class="">
 
-<div>
+<p style="color: green"><%= notice %>
+</p>
+
+<div class="container-fluid">
   <% if @recipes.length !=0 %>
-    <h1>My recepies</h1>
+    <h3 class="text-center">My Recipies</h3>
+    <div class="text-center mb-3">
     <%= link_to "Add new recipe", new_recipe_path %>
+    </div>
 
     <% @recipes.each do |recipe| %>
-      <div>
-        <div>
-          <h4><%= recipe.name %></h4>
-          <p><%= recipe.description %></p>
-          <%= link_to "Recipe Details", recipe_path(recipe.id) %>
-        </div>
-        <div>
+      <div class="container-fluid d-flex card-body">
+        <div class="flex flex-row align-items-center mb-4 border border-4">
+          <h4 class="card-title"><%= recipe.name %></h4>
+          <p class="card-text"><%= recipe.description %></p>
+        
+        <p>
+        <%= link_to "Recipe Details", recipe_path(recipe.id) %>
+
           <% if can? :destroy, recipe %>
             <%= button_to "Remove", recipe_path(recipe.id), method: :delete %>
           <% end %>
+        </p>
         </div>
       </div>
     <% end %>
@@ -24,4 +32,7 @@
     <h1>No recipes available</h1>
     <%= link_to "Add new recipe", new_recipe_path %>
   <% end %>
+</div>
+
+</div>
 </div>
